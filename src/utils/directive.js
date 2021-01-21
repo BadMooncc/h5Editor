@@ -1,12 +1,12 @@
 class Drag {
-  constructor(el) {
+  constructor(params) {
     this.x = 0;
     this.y = 0;
     this.l = 0;
     this.t = 0;
     this.isDown = false;
-    this.el = el;
-    this.zIndex = '';
+    this.el = params.el;
+    this.zIndex = params.index;
   }
   stopMove() {
     this.isDown = false;
@@ -22,13 +22,11 @@ class Drag {
       this.l = el.offsetLeft;
       this.t = el.offsetTop;
       this.isDown = true;
-      // 记录元素初始zindex
-      this.zIndex = el.style.zIndex;
       el.style.zIndex = '1001';
     }
-    el.onmouseout = el.onmouseup = () => {
+    el.onmouseup = () => {
       // 还原元素初始z-index
-      el.style.zIndex = +this.zIndex >= 1001 ? '100' : this.zIndex;
+      el.style.zIndex = this.zIndex;
       //开关关闭
       this.stopMove()
     }
@@ -50,8 +48,11 @@ class Drag {
 export function drag(Vue) {
   Vue.directive('focus', {
     // 当被绑定的元素插入到 DOM 中时……
-    bind: function (el) {
-      let drag = new Drag(el);
+    bind: function (el, binding) {
+      let drag = new Drag({
+        el,
+        index: binding.value
+      });
       drag.init();
     }
   })
