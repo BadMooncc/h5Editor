@@ -11,7 +11,7 @@
           <span class="enlarge-btn enlarge-btn_rt"></span>
           <span class="enlarge-btn enlarge-btn_lb"></span>
           <span class="enlarge-btn enlarge-btn_rb"></span>
-          <button>asd</button>
+          <div>asd</div>
         </div>
       </template>
     </div>
@@ -27,8 +27,8 @@ export default {
     }
   },
   methods: {
-    handleClick() {
-      
+    handleTensile() {
+      console.log(1);
     }
   }
 }
@@ -46,33 +46,41 @@ export default {
   overflow: hidden;
 }
 .box-wrap {
-  padding: 20px;
   user-select:none;
   position: relative;
   border: 1px dashed #000;
   display: inline-block;
+  padding: 20px;
   .enlarge-btn {
-    width: 10px;
-    border-radius: 5px;
-    height: 10px;
-    background: #000;
+    width: 8px;
+    border-radius: 4px;
+    height: 8px;
+    background:#333;
     position: absolute;
   }
+  .enlarge-btn:hover {
+    opacity: .8;
+    transform: scale(1.4);
+  }
   .enlarge-btn_lt {
-    top: 0;
-    left: 0;
+    top: -4px;
+    left: -4px;
   }
   .enlarge-btn_rt {
-    top: 0;
-    right: 0;
+    top: -4px;
+    right: -4px;
   }
   .enlarge-btn_lb {
-    bottom: 0;
-    left: 0;
+    bottom: -4px;
+    left: -4px;
   }
   .enlarge-btn_rb {
-    bottom: 0;
-    right: 0;
+    bottom: -4px;
+    right: -4px;
   }
+}
+.box-wrap > * {
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>
