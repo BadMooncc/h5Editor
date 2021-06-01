@@ -48,13 +48,14 @@ class Drag {
       this.direction = this.directionFn(e);
       console.log(this.direction);
     }
-    window.onmouseup = () => {
+    this.el.onmouseup = () => {
       // 还原元素初始z-index
       this.el.style.zIndex = this.zIndex;
       //开关关闭
       this.stopMove();
+      console.log(this.el.parentNode);
     }
-    document.onmousemove = (e) => {
+    this.el.onmousemove = (e) => {
       if (!this.isDown) return;
       //获取x和y
       let nx = e.clientX;
